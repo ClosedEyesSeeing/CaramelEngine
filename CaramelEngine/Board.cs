@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CaramelEngine.Interfaces;
+
 namespace CaramelEngine
 {
 
@@ -15,22 +17,17 @@ namespace CaramelEngine
      * ie. This controls which territories belong to which player
      * 1 player -> many Territories
      */
-    public interface IBoard : IGenericTarget
-    {
-        Guid ID { get; set; }
-        ActionStack Stack { get; set; }      
-    }
-
+   
     public class Board<T, P> : IBoard
     {        
         public Board()
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
 
         public Board(List<T> _Territories, List<P> _Players)
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
             Players = _Players;
             Territories = _Territories;
             playerMapping = new Dictionary<P, List<T>>();
@@ -106,7 +103,7 @@ namespace CaramelEngine
 
         #region IBoard<T> Members
 
-        public Guid ID
+        public Guid Id
         {
             get;
             set;

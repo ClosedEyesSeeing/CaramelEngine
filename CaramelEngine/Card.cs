@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CaramelEngine.Interfaces;
 
 namespace CaramelEngine
 {
@@ -12,10 +13,7 @@ namespace CaramelEngine
     // to see how this works. Take a stock deck and run with it.
     // To create a deck, you'll need cards, abilities and actions. (Which are available)
 
-    public interface IDeck
-    {
-      Guid ID { get; set; }
-    }
+   
     public class Deck<T> : IDeck where T : ICard 
     {
         private List<T> CurrentCards { get; set; }
@@ -23,13 +21,13 @@ namespace CaramelEngine
 
         public Deck()
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
             Cards = new List<T>();
             CurrentCards = new List<T>();
         }
         public Deck(List<T> cList)
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
             Cards = new List<T>();
             CurrentCards = new List<T>();
             Cards = cList;
@@ -78,7 +76,7 @@ namespace CaramelEngine
 
         #region IDeck Members
 
-        public Guid ID
+        public Guid Id
         {
             get;
             set;
@@ -89,7 +87,7 @@ namespace CaramelEngine
 
     public class ControlledDeck<T, P> : Deck<T>, IController<P>
         where T : ICard
-        where P : IGenericTarget
+        where P : ITargetable
     {
 
         public ControlledDeck(P player)
@@ -128,12 +126,7 @@ namespace CaramelEngine
         public const string Attack = "Attack";
         public const string Counter = "Counter";        
     }
-    public interface ICard
-    {
-        Guid ID { get; set; }
-        string Name { get; set; }
-        string Text { get; set; }
-    }
+
 
     public class Card : ICard
     {
@@ -144,7 +137,7 @@ namespace CaramelEngine
         }
         #region ICard Members
 
-        public Guid ID
+        public Guid Id
         {
             get;
             set;

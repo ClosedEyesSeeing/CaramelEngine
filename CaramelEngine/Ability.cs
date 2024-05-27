@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CaramelEngine.Interfaces;
+
 namespace CaramelEngine
 {
     // Notes:
@@ -18,24 +20,18 @@ namespace CaramelEngine
     // implementations. Example: DamageTargetPlayerForX(Player targetPlayer, Int xDamage)
     // this could then be used to make any damage spell, ie "Causes 2 damage to all players" or "Attack for 1 damage"
     // Need a breadth of 'base' actions for the client to use and expand upon.
-
-    public interface IAction<T> where T : IGenericTarget
-    {
-        Guid ID { get; set; }
-        T Target { get; set; }
-    }
     
-    public class Action : IAction<IGenericTarget>
+    public class Action : IAction<ITargetable>
     {        
         #region IAction<IGenericTarget> Members
 
-        Guid ID
+        public Guid Id
         {
             get;
             set;
         }
 
-        public IGenericTarget Target
+        public ITargetable Target
         {
             get;
             set;
@@ -62,26 +58,12 @@ namespace CaramelEngine
             DelegateAction = performActionDelegate;
         }
 
-        #region IAction<IGenericTarget> Members
-
-        Guid IAction<IGenericTarget>.ID
-        {
-            get;
-            set;
-        }
-
-        #endregion
     }
 
-    public interface IAbility
-    {
-        string Name { get; set; }
-        string Text { get; set; }
-        Action Action { get; set; }
-    }
+    
     public class Ability : IAbility
     {
-        Guid ID { get; set; }
+        public Guid Id { get; set; }
 
         #region IAbility Members
 
@@ -97,7 +79,12 @@ namespace CaramelEngine
             set;
         }
 
-        public Action Action
+        //public Action Action
+        //{
+        //    get;
+        //    set;
+        //}
+        public IAction Action 
         {
             get;
             set;
@@ -108,7 +95,7 @@ namespace CaramelEngine
     
     /*public class Action
     {
-        public Guid ID { get; set; }
+        public Guid Id { get; set; }
         //public Card Caller { get; set; }
         //public bool isCounterBased { get; set; }
         //public int MinCounter { get; set; }
@@ -220,7 +207,7 @@ namespace CaramelEngine
 
         //public Action()
         //{
-        //    ID = Guid.NewGuid();
+        //    Id = Guid.NewGuid();
         //}        
     }*/
 

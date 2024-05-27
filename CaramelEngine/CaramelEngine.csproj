@@ -81,6 +81,28 @@
     <Compile Include="Color.cs" />
     <Compile Include="Dice.cs" />
     <Compile Include="Engine.cs" />
+    <Compile Include="Interfaces\IDie.cs" />
+    <Compile Include="Interfaces\IIdentifiable.cs" />
+    <Compile Include="Interfaces\IRollable.cs" />
+    <Compile Include="Interfaces\IResource.cs" />
+    <Compile Include="Interfaces\ISide.cs" />
+    <Compile Include="Interfaces\ITerritory.cs" />
+    <Compile Include="Interfaces\IStats.cs" />
+    <Compile Include="Interfaces\IReinforcements.cs" />
+    <Compile Include="Interfaces\IRestrictedPoints.cs" />
+    <Compile Include="Interfaces\IPoints.cs" />
+    <Compile Include="Interfaces\IPlayer.cs" />
+    <Compile Include="Interfaces\IRollDice.cs" />
+    <Compile Include="Interfaces\IDice.cs" />
+    <Compile Include="Interfaces\IRestrictedColor.cs" />
+    <Compile Include="Interfaces\IColor.cs" />
+    <Compile Include="Interfaces\ICard.cs" />
+    <Compile Include="Interfaces\IDeck.cs" />
+    <Compile Include="Interfaces\IBoard.cs" />
+    <Compile Include="Interfaces\IAbility.cs" />
+    <Compile Include="Interfaces\IAction.cs" />
+    <Compile Include="Interfaces\IController.cs" />
+    <Compile Include="Interfaces\IAttack.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
@@ -110,6 +132,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

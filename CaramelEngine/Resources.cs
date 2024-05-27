@@ -3,38 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CaramelEngine.Interfaces;
+
 namespace CaramelEngine
 {
     // NOTE: This is pretty good for now, we'll probably need to expand upon it later.
     // TODO: I'd like to make it even more robust and create some more 'preset/base' useages for resources/points etc
 
-    public interface IPoints
-    {
-        int VictoryPoints { get; set; }
-        int CapturePoints { get; set; }
-        int LifePoints { get; set; }
-        int OtherPoints { get; set; }
-    }
-    public interface IRestrictedPoints : IPoints
-    {
-        int VictoryPointsMinValue { get; set; }
-        int VictoryPointsMaxValue { get; set; }
-        int CapturePointsMinValue { get; set; }
-        int CapturePointsMaxValue { get; set; }
-        int LifePointsMinValue { get; set; }
-        int LifePointsMaxValue { get; set; }
-        int OtherPointsMinValue { get; set; }
-        int OtherPointsMaxValue { get; set; }
-    }
-    public interface IReinforcement
-    {
-        int D4Reinforcements { get; set; }
-        int D6Reinforcements { get; set; }
-        int D8Reinforcements { get; set; }
-        int D10Reinforcements { get; set; }
-        int D12Reinforcements { get; set; }
-        int D20Reinforcements { get; set; }
-    }
+    
+
     public class Reinforcement<P> : IReinforcement, IController<P>
     {
         #region IReinforcement Members
@@ -93,19 +70,18 @@ namespace CaramelEngine
 
         #endregion
     }
-    public interface IResources : IColor, IPoints
+    
+    public class Resources : IResource, IColor, IPoints
     {
-        Guid ID { get; set; }
-    }
-    public class Resources : IResources
-    {
-        #region IResources Members
+        #region IResource Members
 
-        public Guid ID
+        public Guid Id
         {
             get;
             set;
         }
+
+        public string Name { get; set; }
 
         #endregion
 

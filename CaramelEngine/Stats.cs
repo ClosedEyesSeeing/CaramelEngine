@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CaramelEngine.Interfaces;
+
 namespace CaramelEngine
 {
     // NOTE: This will be where all point related things would go.
@@ -10,18 +12,7 @@ namespace CaramelEngine
     // ie. RPG, TableTop, Card
     // TODO: I'd like to make this more extensible.
 
-    public interface IStats
-    {
-      int HealthPoints { get; set; }
-      int ManaPoints { get; set; }
-      int Currencey { get; set; }
-      int ArmorPoints { get; set; }
-      int Strength { get; set; }
-      int Stamina { get; set; }
-      int Intellect { get; set; }
-      int Agility { get; set; }
-      int ActionPoints { get; set; }
-    }
+    
     public class Stats : IStats
     {
         #region IStats Members

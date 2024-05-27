@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using CaramelEngine.Interfaces;
+
 namespace CaramelEngine
 {
 
@@ -10,12 +12,7 @@ namespace CaramelEngine
     // TODO: We do need more types of territories made for the 'preset/base' items
     // TODO: Add Directional properties
 
-    public interface ITerritory : IGenericTarget
-    {
-      Guid ID { get; set; }
-      string Name { get; set; }
-        //List<ITerritory> ConnectedTerritories { get; set; }       
-    }
+
 
     public class Territory<T, P> : ITerritory, IController<P>
     {        
@@ -34,7 +31,7 @@ namespace CaramelEngine
 
         #region ITerritory Members
 
-        public Guid ID
+        public Guid Id
         {
             get;            
             set;            
@@ -50,7 +47,7 @@ namespace CaramelEngine
 
         public Territory()
         {
-            ID = Guid.NewGuid();            
+            Id = Guid.NewGuid();            
             ConnectedTerritories = new List<T>(); // TODO: This needs to be evaluated for need.
 
             TopTerritories = new List<T>();
@@ -61,7 +58,7 @@ namespace CaramelEngine
 
         public Territory(string territoryName)
         {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
             Name = territoryName;
             ConnectedTerritories = new List<T>(); // TODO: Evaluate need
 
