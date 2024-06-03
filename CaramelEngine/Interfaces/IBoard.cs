@@ -5,10 +5,7 @@ using System.Text;
 
 namespace CaramelEngine.Interfaces
 {
-    public interface IBoard : ITargetable
-    {
-        Guid Id { get; set; }
-        ActionStack Stack { get; set; }
+    public interface IBoard : IIdentifiable
+    {       
     }
-
 }

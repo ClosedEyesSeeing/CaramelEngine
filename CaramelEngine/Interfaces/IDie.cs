@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CaramelEngine.Interfaces
 {
-    public interface IDie : IRollable, IIdentifiable
+    public interface IDie : IIdentifiable
     {
         int MinValue { get; set; }
         int MaxValue { get; set; }

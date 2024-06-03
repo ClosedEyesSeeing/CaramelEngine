@@ -8,12 +8,80 @@ using CaramelEngine.Interfaces;
 
 namespace CaramelEngine
 {
-    // Note: Dice are pretty much done, not much to them.
-    // TODO: I'd like to make each dice trackable by controller (player, board, territory)
-    // TODO: I'd also like to make each dice targetable - but that may be overkill for them
+    public class BasicDie : IDie, IRollable
+    {
+        public int MinValue { get; set; }
+        public int MaxValue { get; set; }
 
+        public int SideCount { get; }
 
-   
+        public IEnumerable<ISide> Sides { get; set; }
+        public IDice Collection { get; set; }
+        public Guid Id { get; set; }
+
+        private Random _random;
+
+        public BasicDie(int min, int max)
+        {
+            MinValue = min;
+            MaxValue = max;
+            _random = new Random(this.GetHashCode());
+        }
+        public BasicDie(int min, int max, int seed)
+        {
+            MinValue = min;
+            MaxValue = max;
+            _random = new Random(seed);
+        }
+
+        public int Roll()
+        {
+            return _random.Next(MinValue, MaxValue);
+        }
+
+        public Stack<int> Roll(int amountOfDice)
+        {
+            Stack<int> rollStack = new Stack<int>();
+            for(int i = 0; i < amountOfDice; i++)
+            {
+                rollStack.Push(Roll());
+            }
+            return rollStack;
+        }
+    }
+
+    public class BasicDice : IDice, IRollable
+    {
+        public int MinimumAmount { get; set; }
+        public int MaximumAmount { get; set; }
+
+        public IEnumerable<IDie> DiceCollection { get; }
+
+        public BasicDice()
+        {
+
+        }
+
+        public BasicDice(int minimumAmount, int maximumAmount)
+        {
+            MinimumAmount = minimumAmount;
+            MaximumAmount = maximumAmount;
+        }
+
+        public int Roll()
+        {
+            var total = 0;
+
+            // TODO: 
+
+            return total;
+        }
+
+        public Stack<int> Roll(int amountOfItems)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
     //public class RestrictedDice : IDice
     //{
@@ -214,7 +282,7 @@ namespace CaramelEngine
     //        MaxRollIncrease = 0;
     //    }
 
-        
+
     //    public int RollD4()
     //    {
     //        lock (rand)
@@ -330,7 +398,7 @@ namespace CaramelEngine
     //        }
     //        return diceList.ToArray();
     //    }
-        
+
     //}
 
     #region Perhaps move this to Game, vs Engine
@@ -562,7 +630,7 @@ namespace CaramelEngine
     //    #endregion
     //} 
 
-    
+
 
     #endregion
 }
