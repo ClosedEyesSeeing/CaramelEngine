@@ -8,11 +8,15 @@ namespace CaramelEngine.Interfaces
     public interface IRollable
     {
         int Roll();
-        Stack<int> Roll(int amountOfItems);
+        
+    }
+    public interface IMultipleRollable : IRollable
+    {
+        Stack<int> Roll(int numberOfRolls);
     }
     public interface ISideRollable : IRollable
     {
         ISide SideRoll();
-        Stack<ISide> SideRoll(int amountOfItems);
+        Stack<ISide> SideRoll(int numberOfRolls);
     }
 }

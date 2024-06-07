@@ -11,4 +11,11 @@ namespace CaramelEngine.Interfaces
         int MaximumAmount { get; set; }
         IEnumerable<IDie> DiceCollection { get; }
     }
+
+    public interface IDice<T> where T : IDie
+    {
+        int MinimumAmount { get; set; }
+        int MaximumAmount { get; set; }
+        IEnumerable<T> DiceCollection { get; }
+    }
 }

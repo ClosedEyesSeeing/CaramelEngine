@@ -39,47 +39,63 @@ namespace CaramelEngine
             return _random.Next(MinValue, MaxValue);
         }
 
-        public Stack<int> Roll(int amountOfDice)
-        {
-            Stack<int> rollStack = new Stack<int>();
-            for(int i = 0; i < amountOfDice; i++)
-            {
-                rollStack.Push(Roll());
-            }
-            return rollStack;
-        }
+        //public Stack<int> Roll(int amountOfDice)
+        //{
+        //    Stack<int> rollStack = new Stack<int>();
+        //    for(int i = 0; i < amountOfDice; i++)
+        //    {
+        //        rollStack.Push(Roll());
+        //    }
+        //    return rollStack;
+        //}
     }
 
-    public class BasicDice : IDice, IRollable
+    public class BasicDice : IDice<BasicDie>, IRollable, IMultipleRollable
     {
         public int MinimumAmount { get; set; }
         public int MaximumAmount { get; set; }
 
-        public IEnumerable<IDie> DiceCollection { get; }
+        public IEnumerable<BasicDie> DiceCollection { get; }
 
         public BasicDice()
         {
-
+            DiceCollection = new List<BasicDie>();
         }
 
         public BasicDice(int minimumAmount, int maximumAmount)
         {
             MinimumAmount = minimumAmount;
             MaximumAmount = maximumAmount;
+
+            DiceCollection = new List<BasicDie>();
         }
 
         public int Roll()
         {
             var total = 0;
 
-            // TODO: 
+            foreach(var die in DiceCollection)
+            {
+                total += die.Roll(); 
+            }
 
             return total;
         }
 
-        public Stack<int> Roll(int amountOfItems)
+        public Stack<int> Roll(int numberOfRolls)
         {
-            throw new NotImplementedException();
+            Stack<int> stack = new Stack<int>();
+
+            for(int i = 0;i < numberOfRolls;i++)
+            {
+                foreach (var die in DiceCollection)
+                {
+                    stack.Push(die.Roll());
+                }
+            }
+            
+            return stack;
+            
         }
     }
 
